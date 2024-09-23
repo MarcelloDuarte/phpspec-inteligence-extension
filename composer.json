@@ -1,0 +1,26 @@
+{
+    "name": "md/phpspec-intelligence-extension",
+    "description": "A PhpSpec extension to get a AI suggestion about what to spec next",
+    "type": "phpspec-extension",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Md\\PhpSpecIntelligenceExtension\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marcello Duarte",
+            "email": "marcello.duarte@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {
+        "phpspec/phpspec": "^7.5",
+        "guzzlehttp/guzzle": "^7.9",
+        "symfony/finder": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}
