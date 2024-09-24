@@ -72,7 +72,7 @@ You can also set the API key in the `phpspec.yml` file (not recommended for shar
 
 ```yaml
 extensions:
-    YourNamespace\NextExtension:
+    Md\PhpSpecIntelligenceExtension\Extension:
         openai_api_key: 'your-openai-api-key'
 ```
 
