@@ -13,7 +13,8 @@ class Extension implements PhpSpecExtension
     {
         $container->define('console.commands.next', function ($c) use ($params) {
             $config = [
-                'openai_api_key' => $params['openai_api_key'] ?? getenv("OPENAI_API_KEY") ?? null,
+                'openai_api_key' => $params['openai_api_key'] ??
+                    (getenv("OPENAI_API_KEY") !== false ? getenv("OPENAI_API_KEY") : null),
                 'openai_api_model' => $params['openai_api_model'] ?? 'gpt-3.5-turbo',
                 'openai_api_temperature' => $params['openai_api_temperature'] ?? 0.7,
                 'openai_api_max_tokens' => $params['openai_api_max_tokens'] ?? 256
