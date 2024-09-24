@@ -7,26 +7,31 @@ use GuzzleHttp\Client;
 class SuggestionGenerator
 {
 
-    public function __construct()
+    public function __construct(
+        private string $apiKey,
+        private string $model,
+        private int $temperature,
+        private int $maxTokens
+    )
     {
 
     }
 
-    public function generate($apiKey, $prompt): Suggestion
+    public function generate(string $prompt): Suggestion
     {
         $client = new Client();
         $response = $client->post('https://api.openai.com/v1/chat/completions', [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer ' . $this->apiKey,
             ],
             'json' => [
-                'model' => 'gpt-3.5-turbo',
+                'model' => $this->model,
                 'messages' => [
                     ['role' => 'user', 'content' => $prompt],
                 ],
-                'max_tokens' => 1000,
-                'temperature' => 0.7,
+                'max_tokens' => $this->maxTokens,
+                'temperature' => $this->temperature,
             ],
         ]);
 

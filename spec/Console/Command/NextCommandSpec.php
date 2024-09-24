@@ -14,7 +14,9 @@ class NextCommandSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('ap1key');
+        $this->beConstructedWith([
+            'openai_api_key' => 'YOUR_OPENAI_API_KEY'
+        ]);
     }
     function it_is_initializable()
     {
@@ -30,7 +32,9 @@ class NextCommandSpec extends ObjectBehavior
     {
         $this->stubInputSetup($input);
 
-        $this->beConstructedWith(null);
+        $this->beConstructedWith([
+            'openai_api_key' => null
+        ]);
         $this->run($input, $output)->shouldReturn(Command::FAILURE);
 
         $output->writeln('<error>No OpenAI API key provided.</error>')

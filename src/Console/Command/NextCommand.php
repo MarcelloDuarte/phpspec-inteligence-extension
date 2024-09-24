@@ -18,14 +18,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class NextCommand extends Command
 {
-    private ?string $apiKey;
+    private array $config;
     private IndexedServiceContainer $container;
     private TemplateRenderer $renderer;
 
-    public function __construct(?string $apiKey)
+    public function __construct(array $config)
     {
         parent::__construct();
-        $this->apiKey = $apiKey ?? getenv('OPENAI_API_KEY') ?? null;
+        $this->config = $config;
     }
 
     protected function configure(): void
@@ -43,7 +43,7 @@ EOT);
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!$this->apiKey) {
+        if (!$this->config['openai_api_key']) {
             $output->writeln('<error>No OpenAI API key provided.</error>');
             return Command::FAILURE;
         }
@@ -98,8 +98,13 @@ EOT);
 
         $prompt = $this->getPrompt($existingSpecs);
 
-        $suggestionGenerator = new SuggestionGenerator();
-        return $suggestionGenerator->generate($this->apiKey, $prompt);
+        $suggestionGenerator = new SuggestionGenerator(
+            $this->config['openai_api_key'],
+            $this->config['openai_api_model'],
+            $this->config['openai_api_temperature'],
+            $this->config['openai_api_max_tokens']
+        );
+        return $suggestionGenerator->generate($prompt);
     }
 
     private function getPrompt(string $existingSpecs): string
