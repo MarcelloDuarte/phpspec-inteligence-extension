@@ -10,7 +10,7 @@ class SuggestionGenerator
     public function __construct(
         private string $apiKey,
         private string $model,
-        private int $temperature,
+        private float $temperature,
         private int $maxTokens
     )
     {
