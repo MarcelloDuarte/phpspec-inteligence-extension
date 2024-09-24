@@ -48,7 +48,7 @@ Update your `phpspec.yml` file:
 ```yaml
 extensions:
   Md\PhpSpecIntelligenceExtension\Extension:
-    openai_api_key: OPENAI_API_KEY
+    openai_api_key: ~
     openai_api_model: "gpt-3.5-turbo"
     openai_api_temperature: 0.7
     openai_api_max_tokens: 256
