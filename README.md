@@ -110,7 +110,7 @@ vendor/bin/phpspec next
 **Output:**
 
 ```
-Suggested Spec:
+Suggested example for: spec/Acme/MarkdownSpec.php:
 
     function it_registers_the_next_command(ServiceContainer $container)
     {

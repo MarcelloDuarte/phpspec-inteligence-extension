@@ -146,7 +146,7 @@ EOT;
     private function showSuggestion(Suggestion $suggestion, OutputInterface $output): void
     {
         $suggestionPresenter = new SuggestionPresenter($output, $this->renderer);
-        $output->writeln('<info>Suggested Spec:</info>');
+        $output->writeln('<info>Suggested example for:</info> ' . $suggestion->getPath());
         $suggestionPresenter->present($suggestion);
     }
 }
